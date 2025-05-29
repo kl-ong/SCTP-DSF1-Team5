@@ -1,1 +1,6 @@
+- Implement tests for:
+- Null values
+- Duplicates
+- Referential integrity
+- Business logic rules
 
