@@ -17,3 +17,7 @@ with open(input_file, 'r', encoding='utf-8', newline='') as infile, \
 
 print("Cleaned CSV written to", output_file)
 ```
+
+If creating the table directly in GCP using upload, then just enable the Quoted newlines as shown for the reviews.csv
+
+![image](gcp_quoted_newlines.png)
