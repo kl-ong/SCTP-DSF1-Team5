@@ -1,0 +1,10 @@
+# using the olist datasets from Kai's Brazilian Ecommerce dataset
+version: 2
+
+sources:
+  - name: Brazilian_Ecommerce
+    database: dsai-brazilian-ecommerce
+    tables:
+      - name: olist_sellers_dataset
+      - name: olist_products_dataset
+      - name: olist_order_items_dataset
