@@ -48,10 +48,10 @@ cd pipeline-olist
 pip install kaggle
 ```
 
-/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py  
 Implment assets.py to download datasets from kaggle and cleansing
 
-/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/definitions.py
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/definitions.py  
 Implment definitions to load all assets from assets.py
 
 ```
@@ -66,8 +66,8 @@ conda activate elt
 cd load-olist
 ```
 
-/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/load-olist/meltano.yml
-Add and populate extractor information
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/load-olist/meltano.yml  
+Add and populate extractor information  
 ```
 meltano add extractor tap-csv 
 ```
@@ -77,8 +77,8 @@ To test extractor
 meltano invoke tap-csv
 ```
 
-Add and populate loader information, get ready your Big Query Service account key
-/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json
+Add and populate loader information, get ready your Big Query Service account key  
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json  
 ```
 meltano add loader target-bigquery
 ```
