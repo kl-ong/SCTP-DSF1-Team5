@@ -78,7 +78,7 @@ meltano invoke tap-csv
 ```
 
 Add and populate loader information, get ready your Big Query Service account key  
-'/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json'   
+Your BigQuery service account key should be located at `/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json`. 
 ```
 meltano add loader target-bigquery
 ```
