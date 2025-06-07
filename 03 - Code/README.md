@@ -34,54 +34,66 @@ Proposed to build a dagster pipeline with the following stages
 6. TBC perform dataanalysis and reporting with Pandas and Matplot, etc.
 -----------------------------------------------------------------------------------------------------------------------------------
 
-
+```
 cd SCTP-DSF1-Team5/03 - Code/
+```
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /pipeline-olist
 -----------------------------------------------------------------------------------------------------------------------------------
+Create a Kaggle API Token (kaggle.json) and place it under /home/youruser/.kaggle/kaggle.json
+```
 conda activate elt
-
 cd pipeline-olist
 pip install kaggle
-Create a Kaggle API Token (kaggle.json) and place it under /home/youruser/.kaggle/kaggle.json
+```
 
 /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py
-Iimplment assets.py to download datasets from kaggle and cleansing
+Implment assets.py to download datasets from kaggle and cleansing
 
 /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/definitions.py
 Implment definitions to load all assets from assets.py
 
-'''
+```
 dagster dev
-'''
+```
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /load-olist
 -----------------------------------------------------------------------------------------------------------------------------------
+```
 conda activate elt
-
-# init meltano ETL to load CSV to BigQuery
-meltano init load-olist
-
 cd load-olist
+```
 
-# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/load-olist/meltano.yml
-
-# add and populate extractor information
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/load-olist/meltano.yml
+Add and populate extractor information
+```
 meltano add extractor tap-csv 
-# test extractor
+```
+
+To test extractor
+```
 meltano invoke tap-csv
+```
 
-# add and populate loader information, get ready your Big Query Service account key
-# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json
+Add and populate loader information, get ready your Big Query Service account key
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json
+```
 meltano add loader target-bigquery
+```
 
-
-# test your pipeline
+Run your pipeline
+```
 meltano run tap-csv target-bigquery
+```
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /transform-olist
 -----------------------------------------------------------------------------------------------------------------------------------
+TBD dbt
 
+-----------------------------------------------------------------------------------------------------------------------------------
+/test-olist
+-----------------------------------------------------------------------------------------------------------------------------------
+TBD Great Expectations
