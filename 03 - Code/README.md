@@ -91,7 +91,27 @@ meltano run tap-csv target-bigquery
 -----------------------------------------------------------------------------------------------------------------------------------
 /transform-olist
 -----------------------------------------------------------------------------------------------------------------------------------
-TBD dbt
+
+-----------------------------------------------------------------------------------------------------------------------------------
+/dbt_olist
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Created an initial dbt project for sellers, products and order_items. Schema is in
+Design folder - olist.pdf
+Source: Kai's Big Query dsai-brazilian-ecommerce Brazilian_Ecommerce dataset (see models/sources.yml)
+Specify your working Big Query project in profiles.yml (currently my project)
+Currently using oauth. I will change it to BigQuery service account key at a later date when all the tests are done.
+After you downloaded your local copy and make the changes in profiles.yml, run
+
+```
+dbt debug
+```
+If all is good, run
+
+```
+dbt run
+```
+I using views so as not to mess up the dataset.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /test-olist
