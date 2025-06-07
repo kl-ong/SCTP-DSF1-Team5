@@ -21,3 +21,68 @@ print("Cleaned CSV written to", output_file)
 If creating the table directly in GCP using upload, then just enable the Quoted newlines as shown for the reviews.csv
 
 ![image](gcp_quoted_newlines.png)
+
+-----------------------------------------------------------------------------------------------------------------------------------
+Objective: To provide a regular report (weekly or monthly, to be configured on dagster) to Olist eCommerce company on their sales status.
+-----------------------------------------------------------------------------------------------------------------------------------
+Proposed to build a dagster pipeline with the following stages
+1. Ingest from Kaggle olistbr/brazilian-ecommerce dataset and unzip
+2. Prepare the olistbr/brazilian-ecommerce CSVs for ingestion by cleansing it.
+3. Use meltano to ingest to BigQuery
+4. Use dbt to transform dataset to STAR schema coupled with dbt test (uniqueness, non-nullable, foreign keys)
+5. Use Great Expectations to further perform data validation (TBC test cases)
+6. TBC perform dataanalysis and reporting with Pandas and Matplot, etc.
+-----------------------------------------------------------------------------------------------------------------------------------
+
+
+cd SCTP-DSF1-Team5/03 - Code/
+
+-----------------------------------------------------------------------------------------------------------------------------------
+/pipeline-olist
+-----------------------------------------------------------------------------------------------------------------------------------
+conda activate elt
+
+# Provision your dagster scaffold
+dagster project scaffold --name pipeline-olist
+
+cd pipeline-olist
+pip install kaggle
+Create a Kaggle API Token (kaggle.json) and place it under /home/youruser/.kaggle/kaggle.json
+
+# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py
+# implment assets.py to download datasets from kaggle and cleansing
+
+# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/definitions.py
+# implment definitions to load all assets from assets.py
+
+dagster dev
+
+-----------------------------------------------------------------------------------------------------------------------------------
+/load-olist
+-----------------------------------------------------------------------------------------------------------------------------------
+conda activate elt
+
+# init meltano ETL to load CSV to BigQuery
+meltano init load-olist
+
+cd load-olist
+
+# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/load-olist/meltano.yml
+
+# add and populate extractor information
+meltano add extractor tap-csv 
+# test extractor
+meltano invoke tap-csv
+
+# add and populate loader information, get ready your Big Query Service account key
+# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json
+meltano add loader target-bigquery
+
+
+# test your pipeline
+meltano run tap-csv target-bigquery
+
+-----------------------------------------------------------------------------------------------------------------------------------
+/transform-olist
+-----------------------------------------------------------------------------------------------------------------------------------
+
