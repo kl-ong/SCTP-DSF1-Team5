@@ -42,20 +42,19 @@ cd SCTP-DSF1-Team5/03 - Code/
 -----------------------------------------------------------------------------------------------------------------------------------
 conda activate elt
 
-# Provision your dagster scaffold
-dagster project scaffold --name pipeline-olist
-
 cd pipeline-olist
 pip install kaggle
 Create a Kaggle API Token (kaggle.json) and place it under /home/youruser/.kaggle/kaggle.json
 
-# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py
-# implment assets.py to download datasets from kaggle and cleansing
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py
+Iimplment assets.py to download datasets from kaggle and cleansing
 
-# /home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/definitions.py
-# implment definitions to load all assets from assets.py
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/definitions.py
+Implment definitions to load all assets from assets.py
 
+'''
 dagster dev
+'''
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /load-olist
