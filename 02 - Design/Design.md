@@ -5,4 +5,4 @@
 /olist.pdf
 -----------------------------------------------------------------------------------------------------------------------------------
 
-Created an initial dbt project for sellers, products and order_items. 
+This is an initial project schema for using the sellers, products and order_items. 

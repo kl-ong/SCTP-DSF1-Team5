@@ -96,22 +96,26 @@ meltano run tap-csv target-bigquery
 /dbt_olist
 -----------------------------------------------------------------------------------------------------------------------------------
 
-Created an initial dbt project for sellers, products and order_items. Schema is in
-Design folder - olist.pdf
+This is an initial dbt project for sellers, products and order_items using the schema in
+the Design folder (olist.pdf)
 Source: Kai's Big Query dsai-brazilian-ecommerce Brazilian_Ecommerce dataset (see models/sources.yml)
-Specify your working Big Query project in profiles.yml (currently my project)
-Currently using oauth. I will change it to BigQuery service account key at a later date when all the tests are done.
-After you downloaded your local copy and make the changes in profiles.yml, run
+Check your Big Query project parameters in profiles.yml (currently my project)
 
+Setup environment and authenticate to gcloud. Currently using oauth. I will change it to BigQuery service account key at a later date when all the tests are done.
+
+```
+conda activate dwh
+gcloud auth application-default login
+```
+Run 'debug' to check for connection errors.
 ```
 dbt debug
 ```
-If all is good, run
-
+If all are good, 
 ```
 dbt run
 ```
-I using views so as not to mess up the dataset.
+I using views for testing. We will need to add snapshots to do the data cleaning and joining tables for analysis.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /test-olist
