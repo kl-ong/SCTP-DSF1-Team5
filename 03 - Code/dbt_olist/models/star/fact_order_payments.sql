@@ -1,16 +1,17 @@
+
 {{
     config(
         materialized='incremental',
         incremental_strategy='merge',
-        unique_key='seller_id',
+        unique_key=['order_id','payment_sequential'],
         on_schema_change='fail',
-        cluster_by = ["seller_city","seller_state"],
+        cluster_by = ["payment_type","order_id"],
     )
 }}
 
 with source_stg as (
     SELECT *
-    FROM {{ ref('dim_sellers_stg') }}
+    FROM {{ ref('fact_order_payments_stg') }}
     
     {% if is_incremental() %}
         where last_extract_ts > (SELECT max(last_extract_ts) FROM {{ this }})
@@ -18,8 +19,9 @@ with source_stg as (
 )
 
 SELECT
-    S.seller_id,
-    S.seller_zip_code_prefix,
-    S.seller_city,
-    S.seller_state
+    S.order_id,
+    S.payment_sequential,
+    S.payment_type,
+    S.payment_installments,
+    S.payment_value
 FROM source_stg S

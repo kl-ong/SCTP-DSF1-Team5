@@ -8,3 +8,4 @@ sources:
       - name: olist_sellers_dataset
       - name: olist_products_dataset
       - name: olist_order_items_dataset
+      - name: olist_order_payments_dataset

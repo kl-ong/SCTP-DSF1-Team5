@@ -1,16 +1,17 @@
+
 {{
     config(
         materialized='incremental',
         incremental_strategy='merge',
-        unique_key='seller_id',
+        unique_key=['order_id','order_item_id'],
         on_schema_change='fail',
-        cluster_by = ["seller_city","seller_state"],
+        cluster_by = ["order_id","order_item_id"],
     )
 }}
 
 with source_stg as (
     SELECT *
-    FROM {{ ref('dim_sellers_stg') }}
+    FROM {{ ref('fact_order_items_stg') }}
     
     {% if is_incremental() %}
         where last_extract_ts > (SELECT max(last_extract_ts) FROM {{ this }})
@@ -18,8 +19,11 @@ with source_stg as (
 )
 
 SELECT
+    S.order_id,
+    S.order_item_id,
+    S.product_id,
     S.seller_id,
-    S.seller_zip_code_prefix,
-    S.seller_city,
-    S.seller_state
+    S.shipping_limit_date,
+    S.price,
+    S.freight_value
 FROM source_stg S

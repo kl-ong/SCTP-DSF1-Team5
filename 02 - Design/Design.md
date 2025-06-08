@@ -5,4 +5,11 @@
 /olist.pdf
 -----------------------------------------------------------------------------------------------------------------------------------
 
-This is an initial project schema for using the sellers, products and order_items. 
+This project schema includes the entities: 
+-   sellers (seller location), 
+-   products (product category), 
+-   order_items (star)
+-   order_payments (order value)
+-   geolocation (optional, spatial location for distances)
+
+(1) sellers with the lowest revenue
