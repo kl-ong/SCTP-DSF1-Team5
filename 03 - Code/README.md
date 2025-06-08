@@ -67,6 +67,45 @@ meltano run tap-csv target-bigquery
 ```
 
 -----------------------------------------------------------------------------------------------------------------------------------
+/dbt_olist
+-----------------------------------------------------------------------------------------------------------------------------------
+
+This is an initial dbt project for sellers, products and order_items using the schema in
+the Design folder (olist.pdf)
+Source: Kai's Big Query dsai-brazilian-ecommerce Brazilian_Ecommerce dataset (see models/sources.yml)
+Check your Big Query project parameters in profiles.yml (currently my project)
+
+Setup environment and authenticate to gcloud. Currently using oauth. I will change it to BigQuery service account key at a later date when all the tests are done.
+
+The dbt is setup as two steps in the two sub-folders in /models:
+
+(1) stg - to extract the needed data from dsai-brazilian-ecommerce Brazilian_Ecommerce dataset.
+ 
+(2) star - to transform the data from 'stg' for the data warehouse.
+
+As there are over 100k records in the order_items and order_payments, the tables are set to 'incremental', i.e. new records are merge into the tables based on last extract date.  Even then the run time is quite long, so I have set the LIMIT in the stg to extract 1000 records for testing.
+
+```
+conda activate dwh
+gcloud auth application-default login
+```
+Run 'debug' to check for connection errors.
+```
+dbt debug
+```
+If all are good, 
+```
+dbt run
+```
+Then testing the uniqueness and not null rules, 
+```
+dbt test
+```
+There are some test errors as the data is not clean.
+
+Notes: KL has created a /transform_olist. I think we can run the transform within the current dbt to minimise the number of steps. 
+
+-----------------------------------------------------------------------------------------------------------------------------------
 Building data transformation of Kaggle dataset using dbt  
 /transform_olist
 -----------------------------------------------------------------------------------------------------------------------------------
@@ -114,30 +153,7 @@ test your transformation
 dbt test
 ```
 
------------------------------------------------------------------------------------------------------------------------------------
-/dbt_olist
------------------------------------------------------------------------------------------------------------------------------------
 
-This is an initial dbt project for sellers, products and order_items using the schema in
-the Design folder (olist.pdf)
-Source: Kai's Big Query dsai-brazilian-ecommerce Brazilian_Ecommerce dataset (see models/sources.yml)
-Check your Big Query project parameters in profiles.yml (currently my project)
-
-Setup environment and authenticate to gcloud. Currently using oauth. I will change it to BigQuery service account key at a later date when all the tests are done.
-
-```
-conda activate dwh
-gcloud auth application-default login
-```
-Run 'debug' to check for connection errors.
-```
-dbt debug
-```
-If all are good, 
-```
-dbt run
-```
-I using views for testing. We will need to add snapshots to do the data cleaning and joining tables for analysis.
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /test-olist
