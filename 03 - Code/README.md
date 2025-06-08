@@ -97,7 +97,7 @@ If all are good,
 ```
 dbt run
 ```
-Then testing the uniqueness and not null rules, 
+In the dbt_olist dataset, a sub-folder, dbt_olist_stg, is created during the run to store the data from the staging. Then testing the uniqueness and not null rules, 
 ```
 dbt test
 ```
