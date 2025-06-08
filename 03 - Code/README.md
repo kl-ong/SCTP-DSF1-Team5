@@ -75,23 +75,23 @@ conda activate dwh
 cd transform_olist
 ```
 
-/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/dbt_project.yml  
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/dbt_project.yml  
 Verify the models are configured to +materialized: table
 
 Your BigQuery service account key should be located at `/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json`.  
 
-/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/profiles.yml  
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/profiles.yml  
 Set keyfile to point to the path of your BigQuery service account credentials  
 Set method to service-account for authentication to  BigQuery  
 Set project to your BigQuery project id  
 
 
-/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/models/sources.yml
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/models/sources.yml
 Set name of source to olist_raw (this is the source when we load with meltano)
 Set database to your BigQuery project id
 Set tables to the same name we used for loading with meltano
 
-/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/packages.yml  
+/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/packages.yml  
 Add 
 ```
 packages:
