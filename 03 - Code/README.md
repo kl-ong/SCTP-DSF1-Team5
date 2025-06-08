@@ -1,27 +1,3 @@
-To ingest the olist_order_reviews_dataset.csv using `dbt seed`, use the following code (from ChatGPT) to clean the csv file and then `dbt seed` the cleaned file. I tried to include `allow_quoted_newlines = true` for seeds in the `dbt_project.yml` but it doesn't work.
-
-```python
-import csv
-
-input_file = 'olist_order_reviews_dataset.csv'
-output_file = 'olist_order_reviews_dataset_cleaned.csv'
-
-with open(input_file, 'r', encoding='utf-8', newline='') as infile, \
-     open(output_file, 'w', encoding='utf-8', newline='') as outfile:
-    reader = csv.reader(infile, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL, skipinitialspace=True)
-    writer = csv.writer(outfile, quotechar='"', delimiter=',', quoting=csv.QUOTE_ALL)
-    
-    for row in reader:
-        cleaned_row = [field.replace('\n', ' ').replace('\r', ' ') if field else '' for field in row]
-        writer.writerow(cleaned_row)
-
-print("Cleaned CSV written to", output_file)
-```
-
-If creating the table directly in GCP using upload, then just enable the Quoted newlines as shown for the reviews.csv
-
-![image](gcp_quoted_newlines.png)
-
 -----------------------------------------------------------------------------------------------------------------------------------
 Objective: To provide a regular report (weekly or monthly, to be configured on dagster) to Olist eCommerce company on their sales status.
 -----------------------------------------------------------------------------------------------------------------------------------
@@ -39,6 +15,7 @@ cd SCTP-DSF1-Team5/03 - Code/
 ```
 
 -----------------------------------------------------------------------------------------------------------------------------------
+Building the data pipeline using Dagster  
 /pipeline-olist
 -----------------------------------------------------------------------------------------------------------------------------------
 Create a Kaggle API Token (kaggle.json) and place it under /home/youruser/.kaggle/kaggle.json
@@ -59,6 +36,7 @@ dagster dev
 ```
 
 -----------------------------------------------------------------------------------------------------------------------------------
+Building the data loading of Kaggle dataset to BigQuery using Meltano  
 /load-olist
 -----------------------------------------------------------------------------------------------------------------------------------
 ```
@@ -83,14 +61,58 @@ Your BigQuery service account key should be located at `/home/<your username>/SC
 meltano add loader target-bigquery
 ```
 
-Run your pipeline
+Run your loading
 ```
 meltano run tap-csv target-bigquery
 ```
 
 -----------------------------------------------------------------------------------------------------------------------------------
-/transform-olist
+Building data transformation of Kaggle dataset using dbt  
+/transform_olist
 -----------------------------------------------------------------------------------------------------------------------------------
+```
+conda activate dwh
+cd transform_olist
+```
+
+/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/dbt_project.yml  
+Verify the models are configured to +materialized: table
+
+Your BigQuery service account key should be located at `/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/<your bigquery service account key>.json`.  
+
+/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/profiles.yml  
+Set keyfile to point to the path of your BigQuery service account credentials  
+Set method to service-account for authentication to  BigQuery  
+Set project to your BigQuery project id  
+
+
+/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/models/sources.yml
+Set name of source to olist_raw (this is the source when we load with meltano)
+Set database to your BigQuery project id
+Set tables to the same name we used for loading with meltano
+
+/home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/transform_olist/packages.yml  
+Add 
+```
+packages:
+  - package: calogica/dbt_expectations
+    version: [">=0.8.0", "<0.9.0"]
+```
+
+Install package(s)
+```
+dbt deps
+```
+
+Run your transformation
+```
+dbt run
+```
+
+test your transformation
+```
+dbt test
+```
 
 -----------------------------------------------------------------------------------------------------------------------------------
 /dbt_olist
