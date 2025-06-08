@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: dim_sellers
+    description: "Dimension table for sellers."
+    columns:
+      - name: seller_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products
+    description: "Dimension table for products."
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null

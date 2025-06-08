@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: fct_order_items
+    description: "Fact table for order_items."
+    columns:
+      - name: order_id
+        description: "The unique identifier for the order."
+        tests:
+          - not_null
+      - name: order_item_id
+        description: "The unique identifier for the item within an order."
+        tests:
+          - not_null
+      - name: product_id
+        description: "The foreign key to the product dimension table."
+        tests:
+          - relationships:
+              to: ref('dim_products')
+              field: product_id
+      - name: seller_id
+        description: "The foreign key to the seller dimension table."
+        tests:
+          - relationships:
+              to: ref('dim_sellers')
+              field: seller_id
+
+    tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list:
+            - order_id
+            - order_item_id
+

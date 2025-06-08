@@ -1,0 +1,10 @@
+# using the olist datasets from Kai's Brazilian Ecommerce dataset
+version: 2
+
+sources:
+  - name: olist_raw
+    database: meltano-learn-461903
+    tables:
+      - name: olist_sellers
+      - name: olist_products
+      - name: olist_order_items
