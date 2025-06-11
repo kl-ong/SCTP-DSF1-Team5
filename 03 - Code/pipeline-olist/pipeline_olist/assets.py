@@ -174,3 +174,75 @@ def load_kaggle_data(context, processed_kaggle_data: list[Path]): # <--- KEY CHA
         raise
 
     logger.info("Meltano data load completed.")
+
+@asset
+def transform_kaggle_data(context, load_kaggle_data): # Depends on the Meltano load completing
+    """
+    Invokes dbt to run transformations on the loaded data in BigQuery.
+    This asset depends on 'load_kaggle_data' to ensure raw data is available.
+    """
+    logger.info("Starting dbt transformations (dbt run)...")
+
+    try:
+           
+        # Execute the dbt run command
+        result = subprocess.run(
+            ['dbt', 'run'],
+            capture_output=True,
+            text=True,
+            check=True,
+            cwd='../transform_olist'
+        )
+
+        logger.info("dbt run command executed successfully.")
+        logger.info(f"dbt stdout:\n{result.stdout}")
+        if result.stderr:
+            logger.warning(f"dbt stderr (if any):\n{result.stderr}")
+
+    except FileNotFoundError:
+        logger.error("dbt command not found. Ensure dbt CLI is installed and in your PATH.")
+        raise
+    except subprocess.CalledProcessError as e:
+        logger.error(f"dbt command failed with exit code {e.returncode}.")
+        logger.error(f"dbt stdout:\n{e.stdout}")
+        logger.error(f"dbt stderr:\n{e.stderr}")
+        raise
+    except Exception as e:
+        logger.error(f"An unexpected error occurred while running dbt: {e}")
+        raise
+
+    logger.info("dbt transformations completed.")
+
+
+@asset
+def test_transform_data(context, transform_kaggle_data): # Depends on the dbt run completing
+    """
+    Invokes dbt to run tests on the transformed data.
+    This asset depends on 'transform_kaggle_data' to ensure models are built.
+    """
+
+    logger.info("Starting dbt tests (dbt test)...")
+    try:
+        result_test = subprocess.run(
+            ['dbt', 'test'],
+            capture_output=True,
+            text=True,
+            check=True,
+            cwd='../transform_olist'
+        )
+        logger.info("dbt test command executed successfully.")
+        logger.info(f"dbt test stdout:\n{result_test.stdout}")
+        if result_test.stderr:
+            logger.warning(f"dbt test stderr (if any):\n{result_test.stderr}")
+    except FileNotFoundError:
+        logger.error("dbt command not found. Ensure dbt CLI is installed and in your PATH.")
+        raise
+    except subprocess.CalledProcessError as e:
+        logger.error(f"dbt test command failed with exit code {e.returncode}.")
+        logger.error(f"dbt test stdout:\n{e.stdout}")
+        logger.error(f"dbt test stderr:\n{e.stderr}")
+        raise
+    except Exception as e:
+        logger.error(f"An unexpected error occurred during dbt test: {e}")
+        raise
+    logger.info("dbt tests completed.")
