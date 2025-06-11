@@ -1,0 +1,26 @@
+name: prj
+channels:
+  - defaults
+dependencies:
+  - notebook=7.0.6  # Updated to newer version
+  - openpyxl=3.0.10
+  - pandas=1.5.3
+  - python=3.10
+  - seaborn=0.12.2
+  - sqlalchemy=1.4.39
+  - xlrd=2.0.1
+  - jupyter_server>=2.0.0  # Added explicitly
+  - jupyter_core>=5.0.0    # Added explicitly
+  - pip:
+      - dagster==1.10.18
+      - dagster-webserver==1.10.18
+      - dbt-core==1.9.2
+      - dbt-bigquery==1.9.1
+      - google-cloud-storage
+      - google-cloud-bigquery-storage
+      - kaggle
+      - matplotlib==3.10.1
+      - meltano==3.6.0
+      - polars[pandas]==0.19.3
+      - db-dtypes
+      - pyarrow
