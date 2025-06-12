@@ -1,5 +1,16 @@
 transform_olist:
   outputs:
+    # stg:
+    #   dataset: olist_stg  
+    #   job_execution_timeout_seconds: 300
+    #   job_retries: 1
+    #   keyfile: /home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/meltano-learn-461903-deb8bae09cbe.json
+    #   location: US
+    #   method: service-account
+    #   priority: interactive
+    #   project: meltano-learn-461903
+    #   threads: 4
+    #   type: bigquery
     dev:
       dataset: olist
       job_execution_timeout_seconds: 300

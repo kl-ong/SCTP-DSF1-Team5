@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: dim_orders_stg
+    description: "Staging table for dimension orders."
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+            - unique
+            - not_null 
+
+  - name: dim_product_category_name_translation_stg
+    description: "Staging table for dimension product translation."
+    columns:
+      - name: product_category_name
+        description: "The primary key for this table"
+        tests:
+          - not_null 
+      - name: product_category_name_english
+        description: "The primary key for this table"
+        tests:
+          - not_null 
+
+  - name: dim_products_stg
+    description: "Staging table for dimension products."
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null 
+
+  - name: dim_sellers_stg
+    description: "Staging table for dimension sellers."
+    columns:
+      - name: seller_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_order_items_stg
+    description: "Staging table for dimension order items."
+    columns:
+      - name: order_id
+        description: "The composite key for this table"
+        tests:
+          - not_null
+      - name: order_item_id
+        description: "The composite key for this table"
+        tests:
+          - not_null
+    tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list:
+            - order_id
+            - order_item_id
+
+  - name: fact_order_payments_stg
+    description: "Staging table for dimension order payment"
+    columns:
+      - name: order_id
+        description: "The composite key for this table"
+        tests:
+          - not_null
+      - name: payment_sequential
+        description: "The composite key for this table"
+        tests:
+          - not_null
