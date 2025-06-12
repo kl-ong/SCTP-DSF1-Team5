@@ -24,7 +24,6 @@ Create a Kaggle API Token (kaggle.json) and place it under /home/youruser/.kaggl
 ```
 conda activate elt
 cd pipeline-olist
-pip install kaggle
 ```
 
 `/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py  `
@@ -161,3 +160,13 @@ dbt test
 /test-olist
 -----------------------------------------------------------------------------------------------------------------------------------
 TBD Great Expectations
+
+
+-----------------------------------------------------------------------------------------------------------------------------------
+/Notebook
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Set your BigQuery credentials environment path so that jupyter can use for authentication with BigQuery.
+```
+export GOOGLE_APPLICATION_CREDENTIALS="/path/to/your/service-account-key.json"
+```

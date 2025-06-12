@@ -5,6 +5,28 @@ sources:
   - name: olist_raw
     database: meltano-learn-461903
     tables:
+      - name: olist_customers
+      - name: olist_geo_locations
+
+      - name: olist_orders
+      - name: olist_order_items
+      - name: olist_order_payments
+      - name: olist_order_reviews
+
       - name: olist_sellers
       - name: olist_products
-      - name: olist_order_items
+      
+      - name: product_category_name_translation
+
+  - name: olist_stg
+    database: meltano-learn-461903
+    tables:
+      - name: dim_orders_stg
+
+      - name: dim_product_category_name_translation_stg
+      - name: dim_products_stg
+
+      - name: dim_sellers_stg
+
+      - name: fact_order_items_stg
+      - name: fact_order_payments_stg
