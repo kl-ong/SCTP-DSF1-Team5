@@ -1,8 +1,8 @@
 version: 2
 
 models:
-  - name: fct_order_items
-    description: "Fact table for order_items."
+  - name: fact_order_items
+    description: "Fact table for order items."
     columns:
       - name: order_id
         description: "The unique identifier for the order."
@@ -24,10 +24,25 @@ models:
           - relationships:
               to: ref('dim_sellers')
               field: seller_id
-
     tests:
       - dbt_expectations.expect_compound_columns_to_be_unique:
           column_list:
             - order_id
             - order_item_id
 
+  - name: fact_order_payments
+    description: "Fact table for order payments."
+    columns:
+      - name: order_id
+        description: "The unique identifier for the order."
+        tests:
+          - not_null
+      - name: payment_sequential
+        description: "The composite key for this table"
+        tests:
+          - not_null
+    tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list:
+            - order_id
+            - payment_sequential
