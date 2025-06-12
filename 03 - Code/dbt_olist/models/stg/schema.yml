@@ -1,0 +1,57 @@
+version: 2
+
+models:
+  - name: fact_order_items_stg
+    description: "Staging table for order_items."
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+  - name: fact_order_payments_stg
+    description: "Staging table for order_payments."
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+          - not_null
+
+  - name: dim_sellers_stg
+    description: "Dimension table for sellers."
+    columns:
+      - name: seller_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_products_stg
+    description: "Dimension table for products."
+    columns:
+      - name: product_id
+        description: "The primary key for this table"
+        tests:
+          - unique
+          - not_null 
+
+  - name: dim_orders_stg
+    description: "Dimension table for orders."
+    columns:
+      - name: order_id
+        description: "The primary key for this table"
+        tests:
+            - unique
+            - not_null 
+
+  - name: dim_product_category_name_translation_stg
+    description: "Dimension table for product translation."
+    columns:
+      - name: product_category_name
+        description: "The primary key for this table"
+        tests:
+          - not_null 
+      - name: product_category_name_english
+        description: "The primary key for this table"
+        tests:
+          - not_null 
