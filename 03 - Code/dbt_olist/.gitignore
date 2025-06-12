@@ -1,4 +1,13 @@
-
-target/
-dbt_packages/
-logs/
+{
+  "type": "service_account",
+  "project_id": "dsai-brazilian-ecommerce",
+  "private_key_id": "f611ef10e5c870c109e88efdcee4dd029521dac7",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC8j6lrYA3xPAJm\nw35M4knvB+Bw4demzMmgIWOpf/CEdj5Wlnhx12BChDUPdYWSgY16D9VHy9ochLuu\nan9SPS2EI6TVTTFyEcBLEOjPASw8k9VLBRLmKW9qgJ0W5D1+F0/9ovVGv4kl/PNb\n9uIdA384ggwPaGN3JEvf4hSTsPpLy7QYnf46Xj3BUP5IfGtUZ41Ujb1ArKCb8D3h\ngDnzIH9RKksXNRFbtmDSHO5pD+7aAx89slfKSrT+zy3oq54D5WTHZqtCJUfBWOdX\nq+fTylmtgHrBEDj59i3m3ev/9op8AfaUrjY7Ter8EA4+6IwB9oW/towU0StlTvD6\nDQS5xXpZAgMBAAECggEAEboa1iCnZua6nhEiclVy2HE/4TTmOoT1rqN89F42DSn1\npdvLEn7KSq6Vs3CbwGCEHbXX2gJY7MXwxA64jhF40jusny386Emxb401KeLlFwPZ\n8U3Wj0NVeWiCfDi0bEKCT2jO0NooaWUctuhgrRQbVYNqYVdxxG1p4bAmOZVRjqb8\nSRqSpkA+3hrPguU0FyA9EPuSGIXHDFoHWcQBc95Wdu7eggGKUgSC9quLUwphfRI7\nMKz6T7qkfpuZ6Ipeq0UBsscPqeJ4pZWuRJKzrMtZvGTQtrJkkeCm6LwFns80pkTL\nTELC3nisrXAJcWNUPOYDEPo7993E72f3/zjtQpYCwQKBgQDscT/K0/VGF4YTl1Eb\nO+OI4fE4iEJr1t9qb1GTW0gWhaqPp+L03fQeBQ1P8adhfWk9lhs8+JqmZSlZif4s\nvHLZOjPkCy3B7Ly5Bq92gRb7mTVZE/7jw46EjhF1HRGK+2yh2URO5v1v9zBMPHIg\nx6jwn1ET88Iq8HtLqDuoHaYkOQKBgQDMKILjqZnLTfBeiQsx//d8vHX6QEc9JaqS\nyC+zgpHv5NdKdy6dMKN7yimegSSzJ0iGrKRZb87mDB/cfKpBVcEOIaVQL8NDDqxJ\npU1/Fi6X2tPjkZP0e7Yl4ID+rcJg0ugYiMMDOxzL6Yke4yysOSkSaSCngJp2Vjqp\npKv1A8dHIQKBgQDkw9oV86g/jekSsXgu4m4O9ZT/vo6NalO11kjWSx5fdCqHXcew\nZcOY/AhaThRFtiKKDN8DygFPd1dfo60COb7hQHgOb2ZxWA1s8/P2s4W6Hw1Hx5n5\nYy9UP2TSrDJaB1Oe8OkvcjzKBR9804sU/jkNvweiR1mZVB3nILm/uhgSuQKBgGIh\nctCVO+xB2TDHdI8i9sWJHLgd32Af075b5LnHH/iMKYOMh+Zcc6hTwu+CKa7HShAZ\nuaGXoX5oA4SKk5d17aaqO3iwjI2V5vA7OWXFtr2dHE39Mn3IXQQVxkskIBNELPVl\n/z51UmEdLqCfF2Ds1LYZu+1nXldVGTtjgJfzqfyhAoGBAODgMSlglFjRD5vWK9qx\nbkVnLF5xKMIFmJGmQoZXBNg0hyakrc148mBOrV+kJDLw9AoW/hn0cjU4QEL1JsvP\nNXORobccyb41YMSw7mAoEMxAw2FyG55PhLzZ+lYnVMzXa/3wjK2Hx1pl3hiPBPID\nW2xXy//zP3xB3BICQYj2IFsQ\n-----END PRIVATE KEY-----\n",
+  "client_email": "data-analysis-service@dsai-brazilian-ecommerce.iam.gserviceaccount.com",
+  "client_id": "118137419955624691189",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/data-analysis-service%40dsai-brazilian-ecommerce.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

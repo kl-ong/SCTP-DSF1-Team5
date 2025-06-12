@@ -9,8 +9,9 @@ dbt_olist: # dbt_demo name. This is where dbt looks for from dbt_project.yml -> 
     priority: interactive
     jaffle_sql:
       type: bigquery
-      method: oauth
-      project: "sctp-olist" # GCP project id
+      method: service-account 
+      keyfile: /Users/taysk/sctp/Project/dsai-brazilian-ecommerce-f611ef10e5c8.json
+      project: "dsai-brazilian-ecommerce" # GCP project id
       dataset: "dbt_olist"
       retries: 2
   config:
