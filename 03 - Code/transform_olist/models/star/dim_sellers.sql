@@ -1,5 +1,5 @@
 
-SELECT
+SELECT DISTINCT
     s.seller_id,
     oi.order_id,    
     s.seller_zip_code_prefix,

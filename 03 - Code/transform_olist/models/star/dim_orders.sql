@@ -7,7 +7,7 @@ with orders_stg as (
     {% endif %}
 )
 
-SELECT
+SELECT DISTINCT
     order_id,
     customer_id,
     order_status,

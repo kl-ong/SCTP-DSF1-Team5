@@ -2,7 +2,7 @@
 -- This model creates the fact_order_items table, centralizing order item details,
 -- linking to dimensions, and calculating key metrics.
 
-SELECT
+SELECT DISTINCT
     o.order_id,
     o.customer_id,
     s.seller_id, 

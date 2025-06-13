@@ -3,7 +3,7 @@
 -- You might choose to aggregate payments per order here if needed,
 -- or keep it granular per payment_sequential.
 
-SELECT
+SELECT DISTINCT
     op.order_id,
     op.payment_sequential,
     op.payment_type,
