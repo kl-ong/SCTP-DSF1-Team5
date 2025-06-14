@@ -23,7 +23,15 @@ models:
     description: "Dimension table for sellers."
     columns:
       - name: seller_id
-        description: "The primary key for this table"
+        description: "The composite key for this table"
         tests:
-          - unique
           - not_null
+      - name: order_id
+        description: "The composite key for this table"
+        tests:
+          - not_null
+    tests:
+      - dbt_expectations.expect_compound_columns_to_be_unique:
+          column_list:
+            - seller_id
+            - order_id

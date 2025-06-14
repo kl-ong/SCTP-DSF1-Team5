@@ -1,4 +1,4 @@
-SELECT
+SELECT DISTINCT
     p.product_id,
     t.product_category_name_english,
     p.product_category_name,
