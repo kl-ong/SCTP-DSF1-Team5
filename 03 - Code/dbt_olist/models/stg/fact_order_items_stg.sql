@@ -21,4 +21,3 @@ WHERE
    	AND order_id <> ''
 	AND product_id <> ''
 	AND seller_id <> ''
-LIMIT 1000
