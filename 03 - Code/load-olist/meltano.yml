@@ -53,9 +53,9 @@ plugins:
     variant: z3z1ma
     pip_url: git+https://github.com/z3z1ma/target-bigquery.git
     config:
-      project: meltano-learn-461903
+      project: sctp-olist
       dataset: olist_raw
-      credentials_path: /home/ongkokle/SCTP/SCTP-DSF1-Team5/03 - Code/credentials/meltano-learn-461903-deb8bae09cbe.json
+      credentials_path: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/credentials/sctp-olist-2197e8a9890d.json
       method: batch_job
       batch_size: 1000000 
       denormalized: true

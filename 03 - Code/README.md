@@ -23,8 +23,14 @@ Building the data pipeline using Dagster
 Create a Kaggle API Token (kaggle.json) and place it under /home/youruser/.kaggle/kaggle.json
 ```
 conda activate elt
+# check if kaggle is in elt environmant
+conda list kaggle
+conda install -c conda-forge kaggle
+conda activate elt
 cd pipeline-olist
 ```
+If run is successful, the kaggle_dataset downloaded (in hidden directory) is in 
+/Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_wbs0lnyc/storage
 
 `/home/<your username>/SCTP/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py  `
 Implment assets.py to download datasets from kaggle and cleansing
