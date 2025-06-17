@@ -1,0 +1,93 @@
+[32m2025-06-17 17:43:13 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - LOGS_CAPTURED - Started capturing logs in process (pid: 57126).
+[32m2025-06-17 17:43:13 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - transform_kaggle_data - STEP_START - Started execution of step "transform_kaggle_data".
+[32m2025-06-17 17:43:13 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - transform_kaggle_data - Loading file from: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_etlu7wq6/storage/load_kaggle_data using PickledObjectFilesystemIOManager...
+[32m2025-06-17 17:43:13 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - transform_kaggle_data - LOADED_INPUT - Loaded input "load_kaggle_data" using input manager "io_manager"
+[32m2025-06-17 17:43:13 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - transform_kaggle_data - STEP_INPUT - Got input "load_kaggle_data" of type "Any". (Type check passed).
+[32m2025-06-17 17:43:13 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - transform_kaggle_data - Starting dbt transformations (dbt run)...
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - transform_kaggle_data - dbt run command executed successfully.
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - transform_kaggle_data - dbt stdout:
+[0m09:43:15  Running with dbt=1.9.2
+[0m09:43:17  Registered adapter: bigquery=1.9.1
+[0m09:43:18  Found 11 models, 27 data tests, 15 sources, 715 macros
+[0m09:43:18  
+[0m09:43:18  Concurrency: 4 threads (target='dev')
+[0m09:43:18  
+[0m09:43:20  1 of 11 START sql table model olist_stg.dim_orders_stg ......................... [RUN]
+[0m09:43:20  2 of 11 START sql table model olist_stg.dim_product_category_name_translation_stg  [RUN]
+[0m09:43:20  3 of 11 START sql table model olist_stg.dim_products_stg ....................... [RUN]
+[0m09:43:20  4 of 11 START sql table model olist_stg.dim_sellers_stg ........................ [RUN]
+[0m09:43:24  3 of 11 OK created sql table model olist_stg.dim_products_stg .................. [[32mCREATE TABLE (32.3k rows, 2.5 MiB processed)[0m in 3.98s]
+[0m09:43:24  4 of 11 OK created sql table model olist_stg.dim_sellers_stg ................... [[32mCREATE TABLE (3.1k rows, 172.8 KiB processed)[0m in 3.99s]
+[0m09:43:24  2 of 11 OK created sql table model olist_stg.dim_product_category_name_translation_stg  [[32mCREATE TABLE (71.0 rows, 2.6 KiB processed)[0m in 3.99s]
+[0m09:43:24  5 of 11 START sql table model olist_stg.fact_order_items_stg ................... [RUN]
+[0m09:43:24  6 of 11 START sql table model olist_stg.fact_order_payments_stg ................ [RUN]
+[0m09:43:24  7 of 11 START sql table model olist.dim_products ............................... [RUN]
+[0m09:43:25  1 of 11 OK created sql table model olist_stg.dim_orders_stg .................... [[32mCREATE TABLE (99.4k rows, 17.4 MiB processed)[0m in 5.25s]
+[0m09:43:25  8 of 11 START sql table model olist.dim_orders ................................. [RUN]
+[0m09:43:28  6 of 11 OK created sql table model olist_stg.fact_order_payments_stg ........... [[32mCREATE TABLE (103.9k rows, 5.9 MiB processed)[0m in 3.75s]
+[0m09:43:28  5 of 11 OK created sql table model olist_stg.fact_order_items_stg .............. [[32mCREATE TABLE (112.7k rows, 15.1 MiB processed)[0m in 4.27s]
+[0m09:43:28  9 of 11 START sql table model olist.dim_sellers ................................ [RUN]
+[0m09:43:29  7 of 11 OK created sql table model olist.dim_products .......................... [[32mCREATE TABLE (32.3k rows, 5.0 MiB processed)[0m in 4.55s]
+[0m09:43:30  8 of 11 OK created sql table model olist.dim_orders ............................ [[32mCREATE TABLE (99.4k rows, 11.2 MiB processed)[0m in 4.66s]
+[0m09:43:30  10 of 11 START sql table model olist.fact_order_payments ....................... [RUN]
+[0m09:43:33  9 of 11 OK created sql table model olist.dim_sellers ........................... [[32mCREATE TABLE (100.0k rows, 7.5 MiB processed)[0m in 4.70s]
+[0m09:43:36  10 of 11 OK created sql table model olist.fact_order_payments .................. [[32mCREATE TABLE (103.9k rows, 19.7 MiB processed)[0m in 5.59s]
+[0m09:43:36  11 of 11 START sql table model olist.fact_order_items .......................... [RUN]
+[0m09:44:26  11 of 11 OK created sql table model olist.fact_order_items ..................... [[32mCREATE TABLE (112.7k rows, 33.7 MiB processed)[0m in 50.88s]
+[0m09:44:26  
+[0m09:44:26  Finished running 11 table models in 0 hours 1 minutes and 8.05 seconds (68.05s).
+[0m09:44:27  
+[0m09:44:27  [32mCompleted successfully[0m
+[0m09:44:27  
+[0m09:44:27  Done. PASS=11 WARN=0 ERROR=0 SKIP=0 TOTAL=11
+
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mWARNING[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - transform_kaggle_data - dbt stderr (if any):
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - transform_kaggle_data - dbt transformations completed.
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - transform_kaggle_data - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - transform_kaggle_data - Writing file at: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_etlu7wq6/storage/transform_kaggle_data using PickledObjectFilesystemIOManager...
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - transform_kaggle_data - ASSET_MATERIALIZATION - Materialized value transform_kaggle_data.
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - transform_kaggle_data - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2025-06-17 17:44:29 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - c496d41d-07a7-4d3d-807c-d1804dd78740 - 57126 - transform_kaggle_data - STEP_SUCCESS - Finished execution of step "transform_kaggle_data" in 1m16s.

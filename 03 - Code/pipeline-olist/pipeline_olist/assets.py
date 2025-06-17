@@ -26,7 +26,7 @@ def kaggle_dataset(context) -> Path:
         logger.error("context.op_config is None. This means no static_config or run config was provided to the asset.")
         # Provide fallback default values to prevent the AttributeError
         dataset_name = "olistbr/brazilian-ecommerce" # Default if no config provided
-        local_path_str = "data" # Default if no config provided
+        local_path_str = "../data" # Default if no config provided
         unzip_data = True # Default if no config provided
         logger.warning(f"Using fallback default values for kaggle_dataset due to missing config: dataset_name={dataset_name}, local_path={local_path_str}, unzip={unzip_data}")
     else:
@@ -35,7 +35,9 @@ def kaggle_dataset(context) -> Path:
         unzip_data = context.op_config.get("unzip")
 
     local_path = Path(local_path_str)
-    
+    full_path = os.path.abspath(local_path) 
+    logger.info(f"Full path for local data directory: {full_path}")
+       
     #remove data dir if exists and recreate
     if local_path.exists() and local_path.is_dir():
         shutil.rmtree(local_path) # Recursively deletes the directory and its contents
@@ -50,10 +52,10 @@ def kaggle_dataset(context) -> Path:
         # change the "local_path_str" to hard-coded "data" as dagster failed to find the path
         kaggle.api.dataset_download_files(
             dataset_name, 
-            path="data", 
+            path=local_path_str, 
             unzip=True
         )
-        logger.info(f"Successfully downloaded {dataset_name} to {local_path}")
+        logger.info(f"Successfully downloaded {dataset_name} to {os.path.abspath(local_path_str)}")
 
         downloaded_zip_file = None        
         for f in local_path.iterdir():
@@ -64,7 +66,8 @@ def kaggle_dataset(context) -> Path:
             if f.suffix == ".zip":
                 downloaded_zip_file = f
                 break
-        
+            
+        logger.info(f"Full path for local data directory: {full_path}")
         if downloaded_zip_file:
             if unzip_data:
                 logger.info(f"Unzipping {downloaded_zip_file}...")

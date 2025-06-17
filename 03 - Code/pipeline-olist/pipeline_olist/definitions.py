@@ -2,14 +2,11 @@ import os
 from dagster import (
     Definitions,
     load_assets_from_modules,
-    fs_io_manager
+   
 )
 
 from . import assets
 
-current_script_dir = os.path.dirname(os.path.abspath(__file__))
-data_directory = os.path.join(current_script_dir, "data")
-os.makedirs(data_directory, exist_ok=True)
 
 all_assets = load_assets_from_modules([assets])
 
@@ -27,9 +24,7 @@ all_assets = load_assets_from_modules([assets])
 
 defs = Definitions(
     assets=all_assets,
-    resources={
-        "io_manager": fs_io_manager.configured({"base_dir": data_directory}),
-    }
+    
     # jobs=[pandas_job],
     # schedules=[pandas_schedule],
     # resources={

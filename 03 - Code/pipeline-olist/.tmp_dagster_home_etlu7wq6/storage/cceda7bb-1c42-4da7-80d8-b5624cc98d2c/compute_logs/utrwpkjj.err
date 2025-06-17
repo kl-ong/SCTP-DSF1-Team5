@@ -1,0 +1,25 @@
+[32m2025-06-17 17:03:20 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cceda7bb-1c42-4da7-80d8-b5624cc98d2c - 55762 - LOGS_CAPTURED - Started capturing logs in process (pid: 55762).
+[32m2025-06-17 17:03:20 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cceda7bb-1c42-4da7-80d8-b5624cc98d2c - 55762 - load_kaggle_data - STEP_START - Started execution of step "load_kaggle_data".
+[32m2025-06-17 17:03:20 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - cceda7bb-1c42-4da7-80d8-b5624cc98d2c - load_kaggle_data - Loading file from: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_etlu7wq6/storage/processed_kaggle_data using PickledObjectFilesystemIOManager...
+[32m2025-06-17 17:03:20 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - cceda7bb-1c42-4da7-80d8-b5624cc98d2c - 55762 - load_kaggle_data - STEP_FAILURE - Execution of step "load_kaggle_data" failed.
+
+dagster._core.errors.DagsterExecutionLoadInputError: Error occurred while loading input "processed_kaggle_data" of step "load_kaggle_data"::
+
+FileNotFoundError: [Errno 2] No such file or directory: '/Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_etlu7wq6/storage/processed_kaggle_data'
+
+Stack Trace:
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 56, in op_execution_error_boundary
+    yield
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/execution/plan/inputs.py", line 619, in _load_input_with_input_manager
+    value = input_manager.load_input(context)
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/storage/upath_io_manager.py", line 406, in load_input
+    return self._load_single_input(path, context)
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/storage/upath_io_manager.py", line 273, in _load_single_input
+    obj = self.load_from_path(context=context, path=path)
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/storage/fs_io_manager.py", line 284, in load_from_path
+    with path.open("rb") as file:
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/upath/implementations/local.py", line 134, in open
+    return PosixPath.open(self, mode, buffering, encoding, errors, newline)
+  File "/opt/anaconda3/envs/elt/lib/python3.10/pathlib.py", line 1119, in open
+    return self._accessor.open(self, mode, buffering, encoding, errors,
+[0m
