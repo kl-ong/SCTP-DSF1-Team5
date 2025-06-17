@@ -1,0 +1,76 @@
+--- This SQL query calculates the sales buckets for sellers based on their total sales amounts from delivered orders within a specified date range. 
+--- It divides the sellers into 20 buckets based on their sales, ensuring that each bucket has a defined range of sales amounts.
+
+WITH SellerTotalSales AS (
+    SELECT
+        foi.seller_id,
+        SUM(foi.price + foi.freight_value) AS total_sales_amount -- Calculate total sales for each seller
+    FROM
+        {{ ref('fact_order_items') }} AS foi
+    JOIN
+        {{ ref('dim_orders') }} AS do ON foi.order_id = do.order_id
+    WHERE
+        do.order_status = 'delivered' -- Filter for delivered orders
+        AND do.order_purchase_timestamp BETWEEN '2017-10-01' AND '2018-09-30' -- Filter by purchase date range
+    GROUP BY
+        foi.seller_id
+),
+SalesMinMax AS (
+    SELECT
+        MIN(total_sales_amount) AS min_overall_sales,
+        MAX(total_sales_amount) AS max_overall_sales
+    FROM
+        SellerTotalSales
+),
+BucketedSellersWithCalculatedRange AS (
+    SELECT
+        sts.seller_id,
+        sts.total_sales_amount,
+        CASE
+            -- Handle the edge case where min_overall_sales and max_overall_sales are the same (all sellers have same sales)
+            WHEN smm.max_overall_sales = smm.min_overall_sales THEN 1
+            -- Calculate the bucket number based on equal sales ranges
+            ELSE LEAST(
+                    20, -- Cap the bucket number at 20
+                    FLOOR((sts.total_sales_amount - smm.min_overall_sales) / ((smm.max_overall_sales - smm.min_overall_sales) / 20)) + 1
+                 )
+        END AS sales_bucket
+    FROM
+        SellerTotalSales AS sts, SalesMinMax AS smm
+),
+BucketCounts AS (
+    SELECT
+        sales_bucket,
+        MIN(total_sales_amount) AS min_sales_in_bucket,
+        MAX(total_sales_amount) AS max_sales_in_bucket,
+        COUNT(seller_id) AS number_of_sellers_in_bucket
+    FROM
+        BucketedSellersWithCalculatedRange
+    GROUP BY
+        sales_bucket
+),
+AllBuckets AS (
+    -- Generate all 20 bucket numbers
+    SELECT CAST(ROW_NUMBER() OVER (ORDER BY (SELECT NULL)) AS INTEGER) AS bucket_number
+    FROM (SELECT 1 UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12 UNION ALL SELECT 13 UNION ALL SELECT 14 UNION ALL SELECT 15 UNION ALL SELECT 16 UNION ALL SELECT 17 UNION ALL SELECT 18 UNION ALL SELECT 19 UNION ALL SELECT 20) AS TwentyNumbers
+),
+FinalBuckets AS (
+    SELECT
+        ab.bucket_number AS sales_bucket,
+        smm.min_overall_sales + ((ab.bucket_number - 1) * ((smm.max_overall_sales - smm.min_overall_sales) / 20)) AS calculated_min_range,
+        smm.min_overall_sales + (ab.bucket_number * ((smm.max_overall_sales - smm.min_overall_sales) / 20)) AS calculated_max_range
+    FROM
+        AllBuckets AS ab, SalesMinMax AS smm
+)
+
+SELECT
+    fb.sales_bucket,
+    fb.calculated_min_range AS min_sales_in_bucket,
+    fb.calculated_max_range AS max_sales_in_bucket,
+    COALESCE(bc.number_of_sellers_in_bucket, 0) AS number_of_sellers_in_bucket
+FROM
+    FinalBuckets AS fb
+LEFT JOIN
+    BucketCounts AS bc ON fb.sales_bucket = bc.sales_bucket
+ORDER BY
+    fb.sales_bucket ASC
