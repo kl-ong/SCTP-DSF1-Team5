@@ -1,0 +1,121 @@
+[32m2025-06-17 17:49:27 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - 57437 - LOGS_CAPTURED - Started capturing logs in process (pid: 57437).
+[32m2025-06-17 17:49:27 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - 57437 - transform_kaggle_data - STEP_START - Started execution of step "transform_kaggle_data".
+[32m2025-06-17 17:49:27 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - transform_kaggle_data - Loading file from: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_etlu7wq6/storage/load_kaggle_data using PickledObjectFilesystemIOManager...
+[32m2025-06-17 17:49:27 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - 57437 - transform_kaggle_data - LOADED_INPUT - Loaded input "load_kaggle_data" using input manager "io_manager"
+[32m2025-06-17 17:49:27 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - 57437 - transform_kaggle_data - STEP_INPUT - Got input "load_kaggle_data" of type "Any". (Type check passed).
+[32m2025-06-17 17:49:27 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - transform_kaggle_data - Starting dbt transformations (dbt run)...
+[32m2025-06-17 17:50:22 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - transform_kaggle_data - dbt command failed with exit code 1.[0m
+[32m2025-06-17 17:50:22 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - transform_kaggle_data - dbt stdout:
+[0m09:49:30  Running with dbt=1.9.2
+[0m09:49:32  Registered adapter: bigquery=1.9.1
+[0m09:49:33  Found 13 models, 27 data tests, 15 sources, 715 macros
+[0m09:49:33  
+[0m09:49:33  Concurrency: 4 threads (target='dev')
+[0m09:49:33  
+[0m09:49:35  1 of 13 START sql table model olist_stg.dim_orders_stg ......................... [RUN]
+[0m09:49:35  2 of 13 START sql table model olist_stg.dim_product_category_name_translation_stg  [RUN]
+[0m09:49:35  3 of 13 START sql table model olist_stg.dim_products_stg ....................... [RUN]
+[0m09:49:35  4 of 13 START sql table model olist_stg.dim_sellers_stg ........................ [RUN]
+[0m09:49:39  2 of 13 OK created sql table model olist_stg.dim_product_category_name_translation_stg  [[32mCREATE TABLE (71.0 rows, 2.6 KiB processed)[0m in 3.86s]
+[0m09:49:39  5 of 13 START sql table model olist_stg.fact_order_items_stg ................... [RUN]
+[0m09:49:39  4 of 13 OK created sql table model olist_stg.dim_sellers_stg ................... [[32mCREATE TABLE (3.1k rows, 172.8 KiB processed)[0m in 3.92s]
+[0m09:49:39  6 of 13 START sql table model olist_stg.fact_order_payments_stg ................ [RUN]
+[0m09:49:39  3 of 13 OK created sql table model olist_stg.dim_products_stg .................. [[32mCREATE TABLE (32.3k rows, 2.5 MiB processed)[0m in 4.18s]
+[0m09:49:39  7 of 13 START sql table model olist.dim_products ............................... [RUN]
+[0m09:49:39  1 of 13 OK created sql table model olist_stg.dim_orders_stg .................... [[32mCREATE TABLE (99.4k rows, 17.4 MiB processed)[0m in 4.53s]
+[0m09:49:39  8 of 13 START sql table model olist.dim_orders ................................. [RUN]
+[0m09:49:43  5 of 13 OK created sql table model olist_stg.fact_order_items_stg .............. [[32mCREATE TABLE (112.7k rows, 15.1 MiB processed)[0m in 3.83s]
+[0m09:49:43  9 of 13 START sql table model olist.dim_sellers ................................ [RUN]
+[0m09:49:43  6 of 13 OK created sql table model olist_stg.fact_order_payments_stg ........... [[32mCREATE TABLE (103.9k rows, 5.9 MiB processed)[0m in 3.94s]
+[0m09:49:43  7 of 13 OK created sql table model olist.dim_products .......................... [[32mCREATE TABLE (32.3k rows, 5.0 MiB processed)[0m in 3.95s]
+[0m09:49:44  8 of 13 OK created sql table model olist.dim_orders ............................ [[32mCREATE TABLE (99.4k rows, 11.2 MiB processed)[0m in 4.58s]
+[0m09:49:44  10 of 13 START sql table model olist.fact_order_payments ....................... [RUN]
+[0m09:49:47  9 of 13 OK created sql table model olist.dim_sellers ........................... [[32mCREATE TABLE (100.0k rows, 7.5 MiB processed)[0m in 4.01s]
+[0m09:49:49  10 of 13 OK created sql table model olist.fact_order_payments .................. [[32mCREATE TABLE (103.9k rows, 19.7 MiB processed)[0m in 5.05s]
+[0m09:49:49  11 of 13 START sql table model olist.fact_order_items .......................... [RUN]
+[0m09:50:20  11 of 13 OK created sql table model olist.fact_order_items ..................... [[32mCREATE TABLE (112.7k rows, 33.7 MiB processed)[0m in 30.61s]
+[0m09:50:20  12 of 13 START sql table model olist.fact_order_distribution ................... [RUN]
+[0m09:50:20  13 of 13 START sql table model olist.fact_sales_distribution ................... [RUN]
+[0m09:50:20  BigQuery adapter: https://console.cloud.google.com/bigquery?project=sctp-olist&j=bq:US:370e0369-46d6-43fc-aa17-6ecaf42061d4&page=queryresults
+[0m09:50:20  12 of 13 ERROR creating sql table model olist.fact_order_distribution .......... [[31mERROR[0m in 0.52s]
+[0m09:50:20  BigQuery adapter: https://console.cloud.google.com/bigquery?project=sctp-olist&j=bq:US:7c5ea2d1-33ef-442a-9076-dd6803b5c8da&page=queryresults
+[0m09:50:20  13 of 13 ERROR creating sql table model olist.fact_sales_distribution .......... [[31mERROR[0m in 0.55s]
+[0m09:50:20  
+[0m09:50:20  Finished running 13 table models in 0 hours 0 minutes and 46.97 seconds (46.97s).
+[0m09:50:20  
+[0m09:50:20  [31mCompleted with 2 errors, 0 partial successes, and 0 warnings:[0m
+[0m09:50:20  
+[0m09:50:20    Database Error in model fact_order_distribution (models/fact_order_distribution.sql)
+  Syntax error: Expected ")" but got ";" at [86:25]
+  compiled code at target/run/transform_olist/models/fact_order_distribution.sql
+[0m09:50:20  
+[0m09:50:20    Database Error in model fact_sales_distribution (models/fact_sales_distribution.sql)
+  Syntax error: Expected ")" but got ";" at [88:24]
+  compiled code at target/run/transform_olist/models/fact_sales_distribution.sql
+[0m09:50:20  
+[0m09:50:20  Done. PASS=11 WARN=0 ERROR=2 SKIP=0 TOTAL=13
+[0m
+[32m2025-06-17 17:50:22 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - transform_kaggle_data - dbt stderr:
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+[0m
+[32m2025-06-17 17:50:22 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 484f79cb-fb6c-43d8-96a7-4e3025031ed9 - 57437 - transform_kaggle_data - STEP_FAILURE - Execution of step "transform_kaggle_data" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "transform_kaggle_data"::
+
+subprocess.CalledProcessError: Command '['dbt', 'run']' returned non-zero exit status 1.
+
+Stack Trace:
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 56, in op_execution_error_boundary
+    yield
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 129, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+  File "/opt/anaconda3/envs/elt/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+  File "/Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py", line 202, in transform_kaggle_data
+    result = subprocess.run(
+  File "/opt/anaconda3/envs/elt/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+[0m

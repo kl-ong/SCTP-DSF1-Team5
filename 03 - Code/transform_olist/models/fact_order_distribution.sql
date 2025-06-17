@@ -71,4 +71,4 @@ FROM
 LEFT JOIN
     BucketCounts AS bc ON fb.orders_bucket = bc.orders_bucket
 ORDER BY
-    fb.orders_bucket ASC;
+    fb.orders_bucket ASC
