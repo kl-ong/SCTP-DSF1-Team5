@@ -1,6 +1,0 @@
-[32m2025-06-17 16:51:56 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - f4e0e703-10fb-43d5-87ee-181fcab5d454 - 55119 - LOGS_CAPTURED - Started capturing logs in process (pid: 55119).
-[32m2025-06-17 16:51:56 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - f4e0e703-10fb-43d5-87ee-181fcab5d454 - 55119 - load_kaggle_data - STEP_START - Started execution of step "load_kaggle_data".
-[32m2025-06-17 16:51:56 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - f4e0e703-10fb-43d5-87ee-181fcab5d454 - load_kaggle_data - Loading file from: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home____xempt/storage/processed_kaggle_data using PickledObjectFilesystemIOManager...
-[32m2025-06-17 16:51:56 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - f4e0e703-10fb-43d5-87ee-181fcab5d454 - 55119 - load_kaggle_data - LOADED_INPUT - Loaded input "processed_kaggle_data" using input manager "io_manager"
-[32m2025-06-17 16:51:56 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - f4e0e703-10fb-43d5-87ee-181fcab5d454 - 55119 - load_kaggle_data - STEP_INPUT - Got input "processed_kaggle_data" of type "[Path]". (Type check passed).
-[32m2025-06-17 16:51:56 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - f4e0e703-10fb-43d5-87ee-181fcab5d454 - load_kaggle_data - Starting Meltano data load (tap-csv to target-bigquery)...

@@ -5,9 +5,14 @@ from pathlib import Path
 import pandas as pd
 import csv # Import the csv module
 import shutil
-from dagster import asset, get_dagster_logger
+from dagster import asset, get_dagster_logger, AssetExecutionContext
 import subprocess # Import subprocess to run shell commands
 
+import pandas as pd
+import matplotlib.pyplot as plt
+import google.cloud.bigquery
+from google.cloud import bigquery
+from dagster_gcp import BigQueryResource
 
 logger = get_dagster_logger()
 
@@ -259,3 +264,79 @@ def test_transform_data(context, transform_kaggle_data): # Depends on the dbt ru
         logger.error(f"An unexpected error occurred during dbt test: {e}")
         raise
     logger.info("dbt tests completed.")
+    
+    
+@asset
+def sales_distribution(context: AssetExecutionContext, bigquery: BigQueryResource) -> pd.DataFrame:
+    """
+    Reads data from 'your_dataset.your_table_1' in BigQuery into a Pandas DataFrame.
+    """
+    table_id = "olist.fact_sales_distribution"  # Replace with your actual dataset and table name
+    context.log.info(f"Fetching data from BigQuery table: {table_id}")
+
+    query = f"SELECT * FROM `{bigquery.project}.{table_id}` "
+    
+    try:
+        
+        with bigquery.get_client() as client:
+            df = client.query(query).to_dataframe()
+        
+        df = client.query(query).to_dataframe()
+        context.log.info(f"Successfully loaded {len(df)} rows from {table_id}")
+        return df
+    except Exception as e:
+        context.log.error(f"Error reading from BigQuery table {table_id}: {e}")
+        raise
+    
+@asset
+def plot_dataframe_bar_chart(context: AssetExecutionContext, sales_distribution: pd.DataFrame):
+    """
+    Generates a bar chart from the 'my_first_bigquery_table' DataFrame
+    and saves it as a PNG file.
+
+    Assumes 'my_first_bigquery_table' has suitable columns for plotting.
+    You'll need to customize 'x_column' and 'y_column'.
+    """
+    df = sales_distribution # The input DataFrame is automatically passed by Dagster
+
+    # --- Customize these based on your DataFrame's columns ---
+    x_column = "sales_bucket"  # Replace with the name of your categorical column for the x-axis
+    y_column = "number_of_sellers_in_bucket"     # Replace with the name of your numerical column for the y-axis
+    # --- End customization ---
+
+    if x_column not in df.columns or y_column not in df.columns:
+        context.log.error(f"Required columns '{x_column}' or '{y_column}' not found in DataFrame.")
+        raise ValueError("Missing columns for plotting.")
+
+    # Sort the DataFrame by the y_column for better visualization, if desired
+    df_sorted = df.sort_values(by=y_column, ascending=False)
+
+    plt.figure(figsize=(10, 6)) # Adjust figure size as needed
+    plt.bar(df_sorted[x_column], df_sorted[y_column])
+
+    plt.xlabel(x_column.replace('_', 'Bucket').title()) # Auto-capitalize and clean up label
+    plt.ylabel(y_column.replace('_', 'Number of sellers').title())
+    plt.title(f"Bar Chart of {y_column.replace('_', 'Number of sellers').title()} by {x_column.replace('_', 'Total_Sales').title()}")
+    plt.xticks(rotation=45, ha='right') # Rotate x-axis labels if they overlap
+    plt.tight_layout() # Adjust layout to prevent labels from being cut off
+
+    # Define the output path for the plot image
+    # Construct a path within the run's storage directory
+    # context.instance.storage_directory() gives the base storage root
+    # We then create a subdirectory for runs, the specific run_id, and the asset key for organization
+    output_dir = os.path.join(
+        context.instance.storage_directory(),
+        "runs",
+        context.run_id,
+        context.asset_key.path[-1] # This gets the asset's name (e.g., "plot_dataframe_bar_chart")
+    )
+    
+    os.makedirs(output_dir, exist_ok=True) # Ensure the directory exists
+    plot_path = os.path.join(output_dir, f"{context.asset_key.path[-1]}_bar_chart.png")
+
+    plt.savefig(plot_path)
+    context.log.info(f"Bar chart saved to: {plot_path}")
+    plt.close() # Close the plot to free up memory
+
+    # You can optionally return the path or metadata if you want to track it
+    # context.add_output_metadata({"plot_file": plot_path})

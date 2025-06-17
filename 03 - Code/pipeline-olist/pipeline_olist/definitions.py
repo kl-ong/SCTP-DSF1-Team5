@@ -1,14 +1,30 @@
-import os
+
 from dagster import (
     Definitions,
     load_assets_from_modules,
-   
 )
+from dagster_gcp import BigQueryResource
 
 from . import assets
 
 
 all_assets = load_assets_from_modules([assets])
+
+bigquery_resource = BigQueryResource(
+    project="sctp-olist"  # Replace with your GCP project ID
+)
+
+defs = Definitions(
+    assets=all_assets,
+    resources={
+        "bigquery": bigquery_resource,
+    },
+    # jobs=[pandas_job],
+    # schedules=[pandas_schedule],
+    # resources={
+    #     "io_manager": database_io_manager,
+    # },
+)
 
 # define the job that will materialize the assets
 # pandas_job = define_asset_job(name="pandas_job", selection=AssetSelection.all())
@@ -21,13 +37,3 @@ all_assets = load_assets_from_modules([assets])
 # )
 
 # database_io_manager = DuckDBPandasIOManager(database="analytics.pandas_releases")
-
-defs = Definitions(
-    assets=all_assets,
-    
-    # jobs=[pandas_job],
-    # schedules=[pandas_schedule],
-    # resources={
-    #     "io_manager": database_io_manager,
-    # },
-)
