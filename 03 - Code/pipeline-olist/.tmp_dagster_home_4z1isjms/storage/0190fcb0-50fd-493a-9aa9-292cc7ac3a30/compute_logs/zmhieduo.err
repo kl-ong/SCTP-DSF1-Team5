@@ -1,0 +1,51 @@
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - 76338 - LOGS_CAPTURED - Started capturing logs in process (pid: 76338).
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - 76338 - transform_kaggle_data - STEP_START - Started execution of step "transform_kaggle_data".
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - transform_kaggle_data - Loading file from: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_4z1isjms/storage/load_kaggle_data using PickledObjectFilesystemIOManager...
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - 76338 - transform_kaggle_data - LOADED_INPUT - Loaded input "load_kaggle_data" using input manager "io_manager"
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - 76338 - transform_kaggle_data - STEP_INPUT - Got input "load_kaggle_data" of type "Any". (Type check passed).
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - transform_kaggle_data - Starting dbt transformations (dbt run)...
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - transform_kaggle_data - dbt command failed with exit code 1.[0m
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - transform_kaggle_data - dbt stdout:
+[0m
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - transform_kaggle_data - dbt stderr:
+Traceback (most recent call last):
+  File "/opt/anaconda3/envs/dagster_dev/bin/dbt", line 6, in <module>
+    from dbt.cli.main import cli
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/cli/__init__.py", line 1, in <module>
+    from .main import cli as dbt_cli  # noqa
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/cli/main.py", line 11, in <module>
+    from dbt.adapters.factory import register_adapter
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/factory.py", line 9, in <module>
+    from dbt_common.events.functions import fire_event
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt_common/events/__init__.py", line 1, in <module>
+    from dbt_common.events.base_types import EventLevel
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt_common/events/base_types.py", line 4, in <module>
+    from dbt_common.events import types_pb2
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt_common/events/types_pb2.py", line 12, in <module>
+    _runtime_version.ValidateProtobufRuntimeVersion(
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/google/protobuf/runtime_version.py", line 106, in ValidateProtobufRuntimeVersion
+    _ReportVersionError(
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/google/protobuf/runtime_version.py", line 47, in _ReportVersionError
+    raise VersionError(msg)
+google.protobuf.runtime_version.VersionError: Detected incompatible Protobuf Gencode/Runtime versions when loading types.proto: gencode 5.28.3 runtime 5.28.2. Runtime version cannot be older than the linked gencode version. See Protobuf version guarantees at https://protobuf.dev/support/cross-version-runtime-guarantee.
+[0m
+[32m2025-06-18 12:45:55 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 0190fcb0-50fd-493a-9aa9-292cc7ac3a30 - 76338 - transform_kaggle_data - STEP_FAILURE - Execution of step "transform_kaggle_data" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "transform_kaggle_data"::
+
+subprocess.CalledProcessError: Command '['dbt', 'run']' returned non-zero exit status 1.
+
+Stack Trace:
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+  File "/Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py", line 207, in transform_kaggle_data
+    result = subprocess.run(
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+[0m

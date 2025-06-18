@@ -1,0 +1,38 @@
+[32m2025-06-18 12:33:38 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - 75751 - LOGS_CAPTURED - Started capturing logs in process (pid: 75751).
+[32m2025-06-18 12:33:38 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - 75751 - load_kaggle_data - STEP_START - Started execution of step "load_kaggle_data".
+[32m2025-06-18 12:33:38 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - load_kaggle_data - Loading file from: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_4z1isjms/storage/processed_kaggle_data using PickledObjectFilesystemIOManager...
+[32m2025-06-18 12:33:38 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - 75751 - load_kaggle_data - LOADED_INPUT - Loaded input "processed_kaggle_data" using input manager "io_manager", from output "result" of step "processed_kaggle_data"
+[32m2025-06-18 12:33:38 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - 75751 - load_kaggle_data - STEP_INPUT - Got input "processed_kaggle_data" of type "[Path]". (Type check passed).
+[32m2025-06-18 12:33:38 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - load_kaggle_data - Starting Meltano data load (tap-csv to target-bigquery)...
+[32m2025-06-18 12:33:42 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - load_kaggle_data - Meltano command failed with exit code 1.[0m
+[32m2025-06-18 12:33:42 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - load_kaggle_data - Meltano stdout:
+[0m
+[32m2025-06-18 12:33:42 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - load_kaggle_data - Meltano stderr:
+[2m2025-06-18T04:33:41.097234Z[0m [[32m[1minfo     [0m] [1mEnvironment 'dev' is active   [0m
+[2m2025-06-18T04:33:41.488388Z[0m [[31m[1merror    [0m] [1mAnother 'dev:tap-csv-to-target-bigquery' pipeline is already running which started at 2025-06-18 04:26:03.096724+00:00. Wait until 2025-06-18 04:36:54.736620+00:00 when the job will be automatically cancelled if stale, or ignore this check using the '--force' option.[0m
+[2m2025-06-18T04:33:41.507994Z[0m [[31m[1merror    [0m] [1mBlock run completed.          [0m [36mblock_type[0m=[35mExtractLoadBlocks[0m [36merr[0m=[35mRunnerError("Another 'dev:tap-csv-to-target-bigquery' pipeline is already running which started at 2025-06-18 04:26:03.096724+00:00. Wait until 2025-06-18 04:36:54.736620+00:00 when the job will be automatically cancelled if stale, or ignore this check using the '--force' option.")[0m [36mexit_codes[0m=[35m{}[0m [36mset_number[0m=[35m0[0m [36msuccess[0m=[35mFalse[0m
+Need help fixing this problem? Visit http://melta.no/ for troubleshooting steps, or to
+join our friendly Slack community.
+
+Run invocation could not be completed as block failed: Another 'dev:tap-csv-to-target-bigquery' pipeline is already running which started at 2025-06-18 04:26:03.096724+00:00. Wait until 2025-06-18 04:36:54.736620+00:00 when the job will be automatically cancelled if stale, or ignore this check using the '--force' option.
+[0m
+[32m2025-06-18 12:33:42 +0800[0m - dagster - [34mERROR[0m - [31m__ASSET_JOB - 9ea43984-8f07-4b33-b456-bc6cde46a886 - 75751 - load_kaggle_data - STEP_FAILURE - Execution of step "load_kaggle_data" failed.
+
+dagster._core.errors.DagsterExecutionStepExecutionError: Error occurred while executing op "load_kaggle_data"::
+
+subprocess.CalledProcessError: Command '['meltano', 'run', 'tap-csv', 'target-bigquery']' returned non-zero exit status 1.
+
+Stack Trace:
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_core/execution/plan/utils.py", line 57, in op_execution_error_boundary
+    yield
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_utils/__init__.py", line 392, in iterate_with_context
+    next_output = next(iterator)
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 137, in _coerce_op_compute_fn_to_iterator
+    result = invoke_compute_fn(
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dagster/_core/execution/plan/compute_generator.py", line 117, in invoke_compute_fn
+    return fn(context, **args_to_pass) if context_arg_provided else fn(**args_to_pass)
+  File "/Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/pipeline_olist/assets.py", line 169, in load_kaggle_data
+    result = subprocess.run(
+  File "/opt/anaconda3/envs/dagster_dev/lib/python3.10/subprocess.py", line 526, in run
+    raise CalledProcessError(retcode, process.args,
+[0m

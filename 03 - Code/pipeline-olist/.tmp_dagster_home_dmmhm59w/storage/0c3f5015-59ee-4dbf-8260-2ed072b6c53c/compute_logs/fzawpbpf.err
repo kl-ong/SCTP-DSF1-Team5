@@ -1,0 +1,146 @@
+[32m2025-06-18 13:01:49 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - LOGS_CAPTURED - Started capturing logs in process (pid: 76634).
+[32m2025-06-18 13:01:49 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - test_transform_data - STEP_START - Started execution of step "test_transform_data".
+[32m2025-06-18 13:01:49 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - test_transform_data - Loading file from: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_dmmhm59w/storage/transform_kaggle_data using PickledObjectFilesystemIOManager...
+[32m2025-06-18 13:01:49 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - test_transform_data - LOADED_INPUT - Loaded input "transform_kaggle_data" using input manager "io_manager", from output "result" of step "transform_kaggle_data"
+[32m2025-06-18 13:01:49 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - test_transform_data - STEP_INPUT - Got input "transform_kaggle_data" of type "Any". (Type check passed).
+[32m2025-06-18 13:01:49 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - test_transform_data - Starting dbt tests (dbt test)...
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - test_transform_data - dbt test command executed successfully.
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - test_transform_data - dbt test stdout:
+[0m05:01:52  Running with dbt=1.9.8
+[0m05:01:55  Registered adapter: bigquery=1.9.1
+[0m05:01:56  Found 13 models, 27 data tests, 15 sources, 715 macros
+[0m05:01:56  
+[0m05:01:56  Concurrency: 4 threads (target='dev')
+[0m05:01:56  
+[0m05:01:57  1 of 27 START test dbt_expectations_expect_compound_columns_to_be_unique_dim_sellers_seller_id__order_id  [RUN]
+[0m05:01:57  2 of 27 START test dbt_expectations_expect_compound_columns_to_be_unique_fact_order_items_order_id__order_item_id__customer_id__seller_id  [RUN]
+[0m05:01:57  3 of 27 START test dbt_expectations_expect_compound_columns_to_be_unique_fact_order_items_stg_order_id__order_item_id  [RUN]
+[0m05:01:57  4 of 27 START test dbt_expectations_expect_compound_columns_to_be_unique_fact_order_payments_order_id__payment_sequential  [RUN]
+[0m05:02:00  1 of 27 PASS dbt_expectations_expect_compound_columns_to_be_unique_dim_sellers_seller_id__order_id  [[32mPASS[0m in 2.24s]
+[0m05:02:00  5 of 27 START test not_null_dim_orders_order_id ................................ [RUN]
+[0m05:02:00  4 of 27 PASS dbt_expectations_expect_compound_columns_to_be_unique_fact_order_payments_order_id__payment_sequential  [[32mPASS[0m in 2.37s]
+[0m05:02:00  3 of 27 PASS dbt_expectations_expect_compound_columns_to_be_unique_fact_order_items_stg_order_id__order_item_id  [[32mPASS[0m in 2.38s]
+[0m05:02:00  6 of 27 START test not_null_dim_orders_stg_order_id ............................ [RUN]
+[0m05:02:00  7 of 27 START test not_null_dim_product_category_name_translation_stg_product_category_name  [RUN]
+[0m05:02:00  2 of 27 PASS dbt_expectations_expect_compound_columns_to_be_unique_fact_order_items_order_id__order_item_id__customer_id__seller_id  [[32mPASS[0m in 2.42s]
+[0m05:02:00  8 of 27 START test not_null_dim_product_category_name_translation_stg_product_category_name_english  [RUN]
+[0m05:02:02  7 of 27 PASS not_null_dim_product_category_name_translation_stg_product_category_name  [[32mPASS[0m in 2.07s]
+[0m05:02:02  9 of 27 START test not_null_dim_products_product_id ............................ [RUN]
+[0m05:02:02  6 of 27 PASS not_null_dim_orders_stg_order_id .................................. [[32mPASS[0m in 2.27s]
+[0m05:02:02  10 of 27 START test not_null_dim_products_stg_product_id ....................... [RUN]
+[0m05:02:02  5 of 27 PASS not_null_dim_orders_order_id ...................................... [[32mPASS[0m in 2.53s]
+[0m05:02:02  11 of 27 START test not_null_dim_sellers_order_id .............................. [RUN]
+[0m05:02:02  8 of 27 PASS not_null_dim_product_category_name_translation_stg_product_category_name_english  [[32mPASS[0m in 2.40s]
+[0m05:02:02  12 of 27 START test not_null_dim_sellers_seller_id ............................. [RUN]
+[0m05:02:04  10 of 27 PASS not_null_dim_products_stg_product_id ............................. [[32mPASS[0m in 1.81s]
+[0m05:02:04  13 of 27 START test not_null_dim_sellers_stg_seller_id ......................... [RUN]
+[0m05:02:04  9 of 27 PASS not_null_dim_products_product_id .................................. [[32mPASS[0m in 2.10s]
+[0m05:02:04  14 of 27 START test not_null_fact_order_items_order_id ......................... [RUN]
+[0m05:02:04  11 of 27 PASS not_null_dim_sellers_order_id .................................... [[32mPASS[0m in 1.85s]
+[0m05:02:04  15 of 27 START test not_null_fact_order_items_order_item_id .................... [RUN]
+[0m05:02:04  12 of 27 PASS not_null_dim_sellers_seller_id ................................... [[32mPASS[0m in 1.80s]
+[0m05:02:04  16 of 27 START test not_null_fact_order_items_stg_order_id ..................... [RUN]
+[0m05:02:06  15 of 27 PASS not_null_fact_order_items_order_item_id .......................... [[32mPASS[0m in 1.73s]
+[0m05:02:06  17 of 27 START test not_null_fact_order_items_stg_order_item_id ................ [RUN]
+[0m05:02:06  13 of 27 PASS not_null_dim_sellers_stg_seller_id ............................... [[32mPASS[0m in 1.91s]
+[0m05:02:06  18 of 27 START test not_null_fact_order_payments_order_id ...................... [RUN]
+[0m05:02:06  16 of 27 PASS not_null_fact_order_items_stg_order_id ........................... [[32mPASS[0m in 1.71s]
+[0m05:02:06  19 of 27 START test not_null_fact_order_payments_payment_sequential ............ [RUN]
+[0m05:02:06  14 of 27 PASS not_null_fact_order_items_order_id ............................... [[32mPASS[0m in 1.98s]
+[0m05:02:06  20 of 27 START test not_null_fact_order_payments_stg_order_id .................. [RUN]
+[0m05:02:08  20 of 27 PASS not_null_fact_order_payments_stg_order_id ........................ [[32mPASS[0m in 1.67s]
+[0m05:02:08  21 of 27 START test not_null_fact_order_payments_stg_payment_sequential ........ [RUN]
+[0m05:02:08  19 of 27 PASS not_null_fact_order_payments_payment_sequential .................. [[32mPASS[0m in 1.83s]
+[0m05:02:08  22 of 27 START test relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [RUN]
+[0m05:02:08  18 of 27 PASS not_null_fact_order_payments_order_id ............................ [[32mPASS[0m in 2.04s]
+[0m05:02:08  23 of 27 START test unique_dim_orders_order_id ................................. [RUN]
+[0m05:02:08  17 of 27 PASS not_null_fact_order_items_stg_order_item_id ...................... [[32mPASS[0m in 2.11s]
+[0m05:02:08  24 of 27 START test unique_dim_orders_stg_order_id ............................. [RUN]
+[0m05:02:10  21 of 27 PASS not_null_fact_order_payments_stg_payment_sequential .............. [[32mPASS[0m in 2.07s]
+[0m05:02:10  25 of 27 START test unique_dim_products_product_id ............................. [RUN]
+[0m05:02:10  24 of 27 PASS unique_dim_orders_stg_order_id ................................... [[32mPASS[0m in 2.35s]
+[0m05:02:10  23 of 27 PASS unique_dim_orders_order_id ....................................... [[32mPASS[0m in 2.41s]
+[0m05:02:10  26 of 27 START test unique_dim_products_stg_product_id ......................... [RUN]
+[0m05:02:10  27 of 27 START test unique_dim_sellers_stg_seller_id ........................... [RUN]
+[0m05:02:11  22 of 27 PASS relationships_fact_order_items_seller_id__seller_id__ref_dim_sellers_  [[32mPASS[0m in 2.85s]
+[0m05:02:12  25 of 27 PASS unique_dim_products_product_id ................................... [[32mPASS[0m in 2.03s]
+[0m05:02:12  27 of 27 PASS unique_dim_sellers_stg_seller_id ................................. [[32mPASS[0m in 2.16s]
+[0m05:02:12  26 of 27 PASS unique_dim_products_stg_product_id ............................... [[32mPASS[0m in 2.18s]
+[0m05:02:13  
+[0m05:02:13  Finished running 27 data tests in 0 hours 0 minutes and 16.17 seconds (16.17s).
+[0m05:02:13  
+[0m05:02:13  [32mCompleted successfully[0m
+[0m05:02:13  
+[0m05:02:13  Done. PASS=27 WARN=0 ERROR=0 SKIP=0 TOTAL=27
+
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mWARNING[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - test_transform_data - dbt test stderr (if any):
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+/opt/anaconda3/envs/dagster_dev/lib/python3.10/site-packages/dbt/adapters/bigquery/connections.py:570: FutureWarning: job_retry must be explicitly set to None if job_id is set.
+BigQuery cannot retry a failed job by using the exact
+same ID. Setting job_id without explicitly disabling
+job_retry will raise an error in the future. To avoid this
+warning, either use job_id_prefix instead (preferred) or
+set job_retry=None.
+  query_job = client.query(
+
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mINFO[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - test_transform_data - dbt tests completed.
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - test_transform_data - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - test_transform_data - Writing file at: /Users/taysk/sctp/Project/SCTP-DSF1-Team5/03 - Code/pipeline-olist/.tmp_dagster_home_dmmhm59w/storage/test_transform_data using PickledObjectFilesystemIOManager...
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - test_transform_data - ASSET_MATERIALIZATION - Materialized value test_transform_data.
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - test_transform_data - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2025-06-18 13:02:16 +0800[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - 0c3f5015-59ee-4dbf-8260-2ed072b6c53c - 76634 - test_transform_data - STEP_SUCCESS - Finished execution of step "test_transform_data" in 27.05s.

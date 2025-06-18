@@ -266,7 +266,7 @@ def test_transform_data(context, transform_kaggle_data): # Depends on the dbt ru
     logger.info("dbt tests completed.")
     
     
-@asset
+@asset(deps=["test_transform_data"])
 def sales_distribution(context: AssetExecutionContext, bigquery: BigQueryResource) -> pd.DataFrame:
     """
     Reads data from 'your_dataset.your_table_1' in BigQuery into a Pandas DataFrame.
