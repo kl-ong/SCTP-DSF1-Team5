@@ -13,6 +13,8 @@ pip install -e ".[dev]"
 Then, start the Dagster UI web server:
 
 ```bash
+conda activate dagster_dev
+
 dagster dev
 ```
 

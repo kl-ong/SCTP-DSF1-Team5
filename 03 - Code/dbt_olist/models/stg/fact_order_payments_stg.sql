@@ -16,4 +16,4 @@ WHERE
    	AND payment_value IS NOT NULL
    	AND order_id <> '' 
    	AND payment_type <> ''
-LIMIT 1000
+

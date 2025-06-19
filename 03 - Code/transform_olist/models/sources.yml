@@ -1,9 +1,9 @@
-# using the olist datasets from Kai's Brazilian Ecommerce dataset
+# using the olist datasets from sctp-olist dataset
 version: 2
 
 sources:
   - name: olist_raw
-    database: meltano-learn-461903
+    database: sctp-olist
     tables:
       - name: olist_customers
       - name: olist_geo_locations
@@ -19,7 +19,7 @@ sources:
       - name: product_category_name_translation
 
   - name: olist_stg
-    database: meltano-learn-461903
+    database: sctp-olist
     tables:
       - name: dim_orders_stg
 

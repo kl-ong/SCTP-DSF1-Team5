@@ -42,3 +42,9 @@ models:
           column_list:
             - order_id
             - payment_sequential
+
+  - name: fact_order_distribution
+    description: "Fact table for order distribution."
+
+  - name: fact_sales_distribution
+    description: "Fact table for order distribution."
