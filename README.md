@@ -10,7 +10,7 @@ Proposed to build a dagster pipeline with the following stages
 6. TBC perform dataanalysis and reporting with Pandas and Matplot, etc.
 -----------------------------------------------------------------------------------------------------------------------------------
 
-![Data Pipeline](./03 - Code/Assets/pipeline.png)
+![Data Pipeline](./03%20-%20Code/Assets/pipeline.png)
 
 ```
 cd SCTP-DSF1-Team5/03 - Code/
